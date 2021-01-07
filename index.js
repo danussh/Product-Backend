@@ -7,10 +7,10 @@ const bcrypt = require("bcrypt");
 const app = express();
 app.use(bodyParser.json());
 app.use(cors({}));
-
+const port=process.env.PORT||3000
 DBURL="mongodb+srv://training:WUJMyPMB7rW9OP5F@guvi.k00x5.mongodb.net/<dbname>?retryWrites=true&w=majority"
 
-app.listen(3000, () => {
+app.listen(port , () => {
     console.log("Listening to port ");
   });
 
