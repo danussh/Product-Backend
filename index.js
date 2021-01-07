@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 require("dotenv").config();
-const mongodb = require("mongodb");
+const MongoClient = require("mongodb").MongoClient;
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const app = express();
@@ -18,7 +18,7 @@ app.listen(port , () => {
 
   app.post("/product", async (req, res) => {
     try {
-      const client = await mongodb.connect(DBURL);
+      const client = await MongoClient.connect(DBURL);
       console.log("connected to mongo")
       const db = client.db("productManagement");
       const data = await db.collection("products").insertOne(req.body);
@@ -32,7 +32,7 @@ app.listen(port , () => {
 
   app.get("/products", async (req, res) => {
     try {
-      const client = await mongodb.connect(DBURL);
+      const client = await MongoClient.connect(DBURL);
       const db = client.db("productManagement");
       const data = await db.collection("products").find().toArray();
       console.log(data);
@@ -46,7 +46,7 @@ app.listen(port , () => {
 
   app.put("/product", async (req, res) => {
     try {
-      const client = await mongodb.connect(DBURL);
+      const client = await MongoClient.connect(DBURL);
       const db = client.db("productManagement");
       const data = await db.collection("products").updateOne({_id : mongodb.ObjectID(req.body._id)} , {$set : {"name" : req.body.name , "price" : req.body.price , 'stock' : req.body.stock } } )
       console.log(data);
@@ -60,7 +60,7 @@ app.listen(port , () => {
 
   app.delete("/product", async (req, res) => {
     try {
-      const client = await mongodb.connect(DBURL);
+      const client = await MongoClient.connect(DBURL);
       const db = client.db("productManagement");
       const data = await db.collection("products").deleteOne({_id : mongodb.ObjectID(req.body._id)})
       console.log(data);
@@ -77,7 +77,7 @@ app.listen(port , () => {
     var hash = await bcrypt.hash(user.password, 10);
     user.password = hash;
     try {
-      const client = await mongodb.connect(DBURL);
+      const client = await MongoClient.connect(DBURL);
       const db = client.db("productManagement");
       const data = await db.collection("users").insertOne(user);
       await client.close();
@@ -90,7 +90,7 @@ app.listen(port , () => {
 
   app.post("/login", async (req, res) => {
     try {
-      const client = await mongodb.connect(DBURL);
+      const client = await MongoClient.connect(DBURL);
       const db = client.db("productManagement");
       const data = await db
         .collection("users")
@@ -116,3 +116,4 @@ app.listen(port , () => {
       res.status(400).json({ message: "failed" });
     }
   });
+
