@@ -40,7 +40,7 @@ app.listen(port , () => {
       res.json(data);
     } catch (err) {
       console.log(err);
-      res.json({ message: "failed" });
+      res.json({ message: "failed to heroku" });
     }
   });
 
