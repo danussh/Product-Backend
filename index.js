@@ -1,6 +1,7 @@
+require("dotenv").config();
 const port=process.env.PORT||4040
-const DBURL="mongodb+srv://training:WUJMyPMB7rW9OP5F@guvi.k00x5.mongodb.net/productManagement?retryWrites=true&w=majority"
-
+// const DBURL="mongodb+srv://training:WUJMyPMB7rW9OP5F@guvi.k00x5.mongodb.net/productManagement?retryWrites=true&w=majority"
+const DBURL=process.env.DBURL;
  const express = require("express");
 const bodyParser = require("body-parser");
 require("dotenv").config();
