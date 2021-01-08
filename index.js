@@ -1,5 +1,5 @@
 const port=process.env.PORT||4040
-const DBURL="mongodb+srv://training:WUJMyPMB7rW9OP5F@guvi.k00x5.mongodb.net/<dbname>?retryWrites=true&w=majority"
+const DBURL="mongodb+srv://training:WUJMyPMB7rW9OP5F@guvi.k00x5.mongodb.net/productManagement?retryWrites=true&w=majority"
 
  const express = require("express");
 const bodyParser = require("body-parser");
