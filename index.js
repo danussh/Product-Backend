@@ -109,7 +109,7 @@ app.get("/products", async (req, res) => {
     res.json(data);
   } catch (err) {
     console.log(err);
-    res.json({ message: "failed" });
+    res.json({ message: "failed" ,err });
   }
 });
 
